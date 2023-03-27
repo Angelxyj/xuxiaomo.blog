@@ -1,0 +1,444 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>05-CSS中的浮动 | 许小墨のBlog</title><meta name="author" content="许小墨,1440023258@qq.com"><meta name="copyright" content="许小墨"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="CSS 中的浮动HTML 页面的文档流1、标准文档流 --- 面试题     标准文档流指的是元素排版布局过程中，元素会默认自动从左往右，从上往下的流式排列方式     当前面内容发生了变化，后面的内容位置也会随着发生变化  2、留存弊端     无论多么复杂的布局，其基本出发点均是：“如何在一行显示多个div元素”     显然标准流已经无法满足需求，这就要用到浮动     以及某些元素会出现的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="05-CSS中的浮动">
+<meta property="og:url" content="https://xuxiaomo-xyj.github.io//xuxiaomo.blog/2023/02/18/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/HTML+CSS/05-CSS%E4%B8%AD%E7%9A%84%E6%B5%AE%E5%8A%A8/index.html">
+<meta property="og:site_name" content="许小墨のBlog">
+<meta property="og:description" content="CSS 中的浮动HTML 页面的文档流1、标准文档流 --- 面试题     标准文档流指的是元素排版布局过程中，元素会默认自动从左往右，从上往下的流式排列方式     当前面内容发生了变化，后面的内容位置也会随着发生变化  2、留存弊端     无论多么复杂的布局，其基本出发点均是：“如何在一行显示多个div元素”     显然标准流已经无法满足需求，这就要用到浮动     以及某些元素会出现的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg.png">
+<meta property="article:published_time" content="2023-02-18T13:02:26.000Z">
+<meta property="article:modified_time" content="2023-03-26T08:25:11.698Z">
+<meta property="article:author" content="许小墨">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg.png"><link rel="shortcut icon" href="/xuxiaomo.blog/img/favicon.png"><link rel="canonical" href="https://xuxiaomo-xyj.github.io//xuxiaomo.blog/2023/02/18/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/HTML+CSS/05-CSS%E4%B8%AD%E7%9A%84%E6%B5%AE%E5%8A%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/xuxiaomo.blog/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/xuxiaomo.blog/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/xuxiaomo.blog/img/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/xuxiaomo.blog/img/pwa/16.png"/><link rel="mask-icon" href="/xuxiaomo.blog/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/xuxiaomo.blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/xuxiaomo.blog/',
+  algolia: undefined,
+  localSearch: {"path":"/xuxiaomo.blog/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 许小墨","link":"链接: ","source":"来源: 许小墨のBlog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '05-CSS中的浮动',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-26 16:25:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/xuxiaomo.blog/img/touxiang.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/xuxiaomo.blog/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/xuxiaomo.blog/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/xuxiaomo.blog/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/xuxiaomo.blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/xuxiaomo.blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/xuxiaomo.blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/xuxiaomo.blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/xuxiaomo.blog/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/xuxiaomo.blog/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/xuxiaomo.blog/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/xuxiaomo.blog/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/xuxiaomo.blog/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg.png')"><nav id="nav"><span id="blog-info"><a href="/xuxiaomo.blog/" title="许小墨のBlog"><span class="site-name">许小墨のBlog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/xuxiaomo.blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/xuxiaomo.blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/xuxiaomo.blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/xuxiaomo.blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/xuxiaomo.blog/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/xuxiaomo.blog/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/xuxiaomo.blog/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/xuxiaomo.blog/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/xuxiaomo.blog/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">05-CSS中的浮动</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-18T13:02:26.000Z" title="发表于 2023-02-18 21:02:26">2023-02-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-26T08:25:11.698Z" title="更新于 2023-03-26 16:25:11">2023-03-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="05-CSS中的浮动"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="CSS-中的浮动"><a href="#CSS-中的浮动" class="headerlink" title="CSS 中的浮动"></a>CSS 中的浮动</h1><h2 id="HTML-页面的文档流"><a href="#HTML-页面的文档流" class="headerlink" title="HTML 页面的文档流"></a>HTML 页面的文档流</h2><pre><code>1、标准文档流 --- 面试题
+    标准文档流指的是元素排版布局过程中，元素会默认自动从左往右，从上往下的流式排列方式
+    当前面内容发生了变化，后面的内容位置也会随着发生变化
+
+2、留存弊端
+    无论多么复杂的布局，其基本出发点均是：“如何在一行显示多个div元素”
+    显然标准流已经无法满足需求，这就要用到浮动
+    以及某些元素会出现的特定区域，这就要用到定位
+</code></pre>
+<h2 id="什么是浮动？"><a href="#什么是浮动？" class="headerlink" title="什么是浮动？"></a>什么是浮动？</h2><pre><code>浮动可以理解为让某个div元素脱离标准流，漂浮在标准流之上，和标准流不是一个层次
+
+浮动层：给元素的 float 属性赋值后，就是脱离文档流，进行左右浮动，紧贴着父元素(默认为body文本区域)的左右边框
+而此浮动元素在文档流空出的位置，由后续的(非浮动)元素填充上去
+块级元素直接填充上去，若跟浮动元素的范围发生重叠，浮动元素覆盖块级元素
+</code></pre>
+<p><img src="/xuxiaomo.blog/2023/02/18/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/HTML+CSS/05-CSS%E4%B8%AD%E7%9A%84%E6%B5%AE%E5%8A%A8/float.jpg" alt="float"></p>
+<h3 id="浮动的属性"><a href="#浮动的属性" class="headerlink" title="浮动的属性"></a>浮动的属性</h3><pre><code>float:
+    none:	默认值。元素不浮动，并会显示在其在文本中出现的位置
+    left: 	元素向左浮动
+    right:	元素向右浮动
+
+浮动后的div宽度会变成 0，但是其内边框可能撑起它的宽和高
+</code></pre>
+<h3 id="浮动的特征"><a href="#浮动的特征" class="headerlink" title="浮动的特征"></a>浮动的特征</h3><pre><code>1、块级元素失去“块状”换行显示特征，变为行内元素
+2、紧贴着上一个浮动元素（同方向）或父元素的边框，如果宽度不够将换行显示
+3、占据行内元素的空间、导致行内元素围绕显示 --- 图文环绕效果
+4、可以强迫浮动元素换行显示， 使用 clear 属性
+    clear:
+        none:	默认值，允许两边都可以有浮动对象
+        left:	不允许左边有浮动对象
+        right:	不允许右边有浮动对象
+        both:	两边都不允许都浮动对象
+</code></pre>
+<h3 id="浮动能做哪些事情？"><a href="#浮动能做哪些事情？" class="headerlink" title="浮动能做哪些事情？"></a>浮动能做哪些事情？</h3><pre><code>使多个div显示在同一行
+常见的效果：各种导航栏，商品的排版，新闻的排版，文字环绕效果......
+</code></pre>
+<h3 id="浮动的弊端"><a href="#浮动的弊端" class="headerlink" title="浮动的弊端"></a>浮动的弊端</h3><pre><code>导致高度塌陷
+    当对于所有的子元素都设置了浮动之后，而父元素没有去设置高度，
+父元素失去了支撑同时父元素的高度消失，缩成了一条线，高度出现了塌陷
+
+    解决方案：
+        1、直接添加高度（不推荐）
+            高度固定死，内容如果是后端返回的数据不固定的话，不够灵活
+
+        2、额外标签法（不推荐）
+            在最后一个浮动标签后，新加一个标签，给其设置 clear：both
+            clear: both, 本质是闭合浮动，就是让父盒子闭合出口和入口，不让子盒子出来
+
+            如果我们清除了浮动，父元素自动检测子盒子最高的高度，然后与其同高
+            优点：通俗易懂，方便
+            缺点：添加无意义标签，语义化差
+
+        3、父级添加 overflow 属性（不推荐）
+            父元素添加 overflow:hidden
+            overflow: hidden, 本质是通过触发BFC方式，实现清除浮动
+
+            优点：代码简洁
+            缺点：内容增多的时候容易造成不会自动换行导致内容被隐藏掉，无法显示要溢出的元素
+
+        4、使用 after 伪元素清除浮动
+            .clear::after &#123;
+                content: &#39;&#39;;
+                display: block;（必须变成块元素）
+                height:0; 处理兼容，让没有高度
+                visbility: hidden;处理兼容，让消失
+                clear: both;
+            &#125;
+            .clear &#123;
+                *zoom: 1;
+                /* ie6 清除浮动的方式， * 号 只有在IE6 IE7执行，其他浏览器不执行 */
+            &#125;
+            优点：符合闭合浮动思想，结构语义化正确
+            缺点：ie6-7不支持伪元素::after，使用zoom:1触发hasLayout
+
+        5、使用 before 和 after 双伪元素清除浮动
+            .clear::after, .clear::before &#123;
+                content: &#39;&#39;;
+                display: block;
+            &#125;
+            .clear::after &#123;
+                clear: both;
+            &#125;
+            .clear &#123;
+                *zoom: 1;
+                /* ie6 清除浮动的方式， * 号 只有在IE6 IE7执行，其他浏览器不执行 */
+            &#125;
+
+            优点：代码更简洁
+            缺点：用zoom:1触发hasLayout
+</code></pre>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://xuxiaomo-xyj.github.io//xuxiaomo.blog">许小墨</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xuxiaomo-xyj.github.io//xuxiaomo.blog/2023/02/18/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/HTML+CSS/05-CSS%E4%B8%AD%E7%9A%84%E6%B5%AE%E5%8A%A8/">https://xuxiaomo-xyj.github.io//xuxiaomo.blog/2023/02/18/前端开发/HTML+CSS/05-CSS中的浮动/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://xuxiaomo-xyj.github.io//xuxiaomo.blog" target="_blank">许小墨のBlog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/xuxiaomo.blog/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/xuxiaomo.blog/img/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/xuxiaomo.blog/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/xuxiaomo.blog/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/xuxiaomo.blog/2023/02/17/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/HTML+CSS/04-CSS%E5%9F%BA%E7%A1%80/" title="04-CSS基础"><img class="cover" src="https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="onerror=null;src='/xuxiaomo.blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">04-CSS基础</div></div></a></div><div class="next-post pull-right"><a href="/xuxiaomo.blog/2023/02/21/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/HTML+CSS/06-CSS%E4%B8%AD%E7%9A%84%E7%9B%92%E6%A8%A1%E5%9E%8B/" title="06-CSS中的盒模型"><img class="cover" src="https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="onerror=null;src='/xuxiaomo.blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">06-CSS中的盒模型</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/xuxiaomo.blog/img/touxiang.webp" onerror="this.onerror=null;this.src='/xuxiaomo.blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">许小墨</div><div class="author-info__description">全栈攻城狮的基本素养</div></div><div class="card-info-data site-data is-center"><a href="/xuxiaomo.blog/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/xuxiaomo.blog/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/xuxiaomo.blog/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xuxiaomo-xyj" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1440023258@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS-%E4%B8%AD%E7%9A%84%E6%B5%AE%E5%8A%A8"><span class="toc-number">1.</span> <span class="toc-text">CSS 中的浮动</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML-%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%96%87%E6%A1%A3%E6%B5%81"><span class="toc-number">1.1.</span> <span class="toc-text">HTML 页面的文档流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B5%AE%E5%8A%A8%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">什么是浮动？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E5%8A%A8%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.1.</span> <span class="toc-text">浮动的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E5%8A%A8%E7%9A%84%E7%89%B9%E5%BE%81"><span class="toc-number">1.2.2.</span> <span class="toc-text">浮动的特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E5%8A%A8%E8%83%BD%E5%81%9A%E5%93%AA%E4%BA%9B%E4%BA%8B%E6%83%85%EF%BC%9F"><span class="toc-number">1.2.3.</span> <span class="toc-text">浮动能做哪些事情？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E5%8A%A8%E7%9A%84%E5%BC%8A%E7%AB%AF"><span class="toc-number">1.2.4.</span> <span class="toc-text">浮动的弊端</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/xuxiaomo.blog/2023/03/26/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/JavaScript/10-%E4%BA%8B%E4%BB%B6/" title="10-事件"><img src="https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg3.png" onerror="this.onerror=null;this.src='/xuxiaomo.blog/img/404.jpg'" alt="10-事件"/></a><div class="content"><a class="title" href="/xuxiaomo.blog/2023/03/26/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/JavaScript/10-%E4%BA%8B%E4%BB%B6/" title="10-事件">10-事件</a><time datetime="2023-03-26T09:42:34.000Z" title="发表于 2023-03-26 17:42:34">2023-03-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/xuxiaomo.blog/2023/03/25/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/JavaScript/09-BOM%E5%92%8CDOM/" title="09-BOM and DOM"><img src="https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg3.png" onerror="this.onerror=null;this.src='/xuxiaomo.blog/img/404.jpg'" alt="09-BOM and DOM"/></a><div class="content"><a class="title" href="/xuxiaomo.blog/2023/03/25/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/JavaScript/09-BOM%E5%92%8CDOM/" title="09-BOM and DOM">09-BOM and DOM</a><time datetime="2023-03-25T09:52:34.000Z" title="发表于 2023-03-25 17:52:34">2023-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/xuxiaomo.blog/2023/03/23/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/JavaScript/08-%E6%95%B0%E5%AD%A6%E6%93%8D%E4%BD%9C%E5%92%8C%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F/" title="08-Math and Date"><img src="https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg3.png" onerror="this.onerror=null;this.src='/xuxiaomo.blog/img/404.jpg'" alt="08-Math and Date"/></a><div class="content"><a class="title" href="/xuxiaomo.blog/2023/03/23/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/JavaScript/08-%E6%95%B0%E5%AD%A6%E6%93%8D%E4%BD%9C%E5%92%8C%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F/" title="08-Math and Date">08-Math and Date</a><time datetime="2023-03-23T06:52:34.000Z" title="发表于 2023-03-23 14:52:34">2023-03-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/xuxiaomo.blog/2023/03/22/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/JavaScript/07-%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="07-字符串"><img src="https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/xuxiaomo.blog/img/404.jpg'" alt="07-字符串"/></a><div class="content"><a class="title" href="/xuxiaomo.blog/2023/03/22/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/JavaScript/07-%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="07-字符串">07-字符串</a><time datetime="2023-03-22T11:52:34.000Z" title="发表于 2023-03-22 19:52:34">2023-03-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/xuxiaomo.blog/2023/03/21/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/JavaScript/06-%E6%95%B0%E7%BB%84/" title="06-数组"><img src="https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg2.png" onerror="this.onerror=null;this.src='/xuxiaomo.blog/img/404.jpg'" alt="06-数组"/></a><div class="content"><a class="title" href="/xuxiaomo.blog/2023/03/21/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/JavaScript/06-%E6%95%B0%E7%BB%84/" title="06-数组">06-数组</a><time datetime="2023-03-21T06:32:54.000Z" title="发表于 2023-03-21 14:32:54">2023-03-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2023 By 许小墨</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://butterfly.js.org/">blog</a>!</br><!---<a href="icp链接"><img class="icp-icon" src="icp图片">---><span>备案号：xxxxxx</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/xuxiaomo.blog/js/utils.js"></script><script src="/xuxiaomo.blog/js/main.js"></script><script src="/xuxiaomo.blog/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'https://xuxiaomo-xyj.github.io//xuxiaomo.blog/2023/02/18/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/HTML+CSS/05-CSS%E4%B8%AD%E7%9A%84%E6%B5%AE%E5%8A%A8/'
+    this.page.identifier = '/xuxiaomo.blog/2023/02/18/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/HTML+CSS/05-CSS%E4%B8%AD%E7%9A%84%E6%B5%AE%E5%8A%A8/'
+    this.page.title = '05-CSS中的浮动'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Valine' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/xuxiaomo.blog/js/search/local-search.js"></script></div></body></html>
