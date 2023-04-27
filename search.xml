@@ -777,11 +777,11 @@
             
             <tag> 前端 </tag>
             
-            <tag> 方法 </tag>
-            
             <tag> String </tag>
             
             <tag> 字符串 </tag>
+            
+            <tag> 方法 </tag>
             
         </tags>
       
@@ -810,11 +810,11 @@
             
             <tag> 前端 </tag>
             
+            <tag> 方法 </tag>
+            
             <tag> 数组 </tag>
             
             <tag> Array </tag>
-            
-            <tag> 方法 </tag>
             
         </tags>
       
@@ -1269,9 +1269,9 @@
           
           <category> 前端开发 </category>
           
-          <category> HTML </category>
-          
           <category> CSS </category>
+          
+          <category> HTML </category>
           
       </categories>
       
